@@ -1,4 +1,4 @@
-# Python Outlook(Microsoft email service) Library
+# Python Outlook (Microsoft email service) Library
 Python Library to read email from live, hotmail, outlook or any microsoft email service, just dowload to yout python script folder. This library using Imaplib python to read email with IMAP protocol.
 ## Prerequisite Library
 Please make sure you have this library installed on your system first before your running this code
@@ -16,7 +16,7 @@ import outlook
 mail = outlook.Outlook()
 mail.login('emailaccount@live.com','yourpassword')
 mail.inbox()
-print mail.unread()
+print(mail.unread())
 ```
 
 ### To get latest Unread Message in Junk :
@@ -25,15 +25,15 @@ import outlook
 mail = outlook.Outlook()
 mail.login('emailaccount@live.com','yourpassword')
 mail.junk()
-print mail.unread()
+print(mail.unread())
 ```
 
 ### Retrive email element :
 ```py
-print mail.mailbody()
-print mail.mailsubject()
-print mail.mailfrom()
-print mail.mailto()
+print(mail.mailbody())
+print(mail.mailsubject())
+print(mail.mailfrom())
+print(mail.mailto())
 ```
 
 ### To send Message :
@@ -65,16 +65,16 @@ def checkingFolder(folder):
 	mail = outlook.Outlook()
 	mail.login(config.outlook_email,config.outlook_password)
 	mail.readOnly(folder)
-	print "  Looking Up "+folder
+	print("  Looking Up "+folder)
 	try:
 		unread_ids_today = mail.unreadIdsToday()
-		print "   unread email ids today : "
-		print unread_ids_today
+		print("   unread email ids today : ")
+		print(unread_ids_today)
 		unread_ids_with_word = mail.getIdswithWord(unread_ids_today,'skype id')
-		print "   unread email ids with word Skype ID today : "
-		print unread_ids_with_word
+		print("   unread email ids with word Skype ID today : ")
+		print(unread_ids_with_word)
 	except:
-		print config.nomail
+		print(config.nomail)
 	#fetch Inbox folder
 	mail = outlook.Outlook()
 	mail.login(config.outlook_email,config.outlook_password)
@@ -85,29 +85,29 @@ def checkingFolder(folder):
 			subject = mail.mailsubject()
 			message = mail.mailbody()
 			skypeidarr = parser.getSkype(message)
-			print subject
-			print skypeidarr
+			print(subject)
+			print(skypeidarr)
 			i = 0
 			while i < len(skypeidarr):
 				skype.SendMessage(skypeidarr[i],config.intromsg+subject+"\r\n with Content : \r\n"+message)
 				i += 1
 			config.success()
-			print "  sending reply message..."
-			print "  to :"+mail.mailfrom().split('>')[0].split('<')[1]
-			print "  subject : "+subject
-			print "  content : "+config.replymessage
+			print("  sending reply message...")
+			print("  to :"+mail.mailfrom().split('>')[0].split('<')[1])
+			print("  subject : "+subject)
+			print("  content : "+config.replymessage)
 			mail.sendEmail(mail.mailfrom().split('>')[0].split('<')[1],"Re : "+subject,config.replymessage)
 			time.sleep(10)
 	except:
-		print config.noword
+		print(config.noword)
 		time.sleep(10)
 		
 while True:
 	#checking ids in Inbox Folder
-	print config.checkinbox
+	print(config.checkinbox)
 	checkingFolder('Inbox')
 	#checking Junk Folder
-	print config.checkjunk
+	print(config.checkjunk)
 	checkingFolder('Junk')
 	
 ```
