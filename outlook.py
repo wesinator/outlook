@@ -20,6 +20,8 @@ class Outlook():
         while True:
             try:
                 self.imap = imaplib.IMAP4_SSL(config.imap_server,config.imap_port)
+                # self.imap.debug = 3
+                
                 r, d = self.imap.login(username, password)
                 assert r == 'OK', 'login failed'
                 print(" > Sign as ", d)
