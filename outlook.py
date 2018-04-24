@@ -91,7 +91,7 @@ class Outlook():
 
     def unreadIdsToday(self):
         r, d = self.imap.search(None, '(SINCE "'+self.today+'")', 'UNSEEN')
-        list = d[0].split(' ')
+        list = d[0].split(b' ')
         return list
 
     def getIdswithWord(self, ids, word):
@@ -104,7 +104,7 @@ class Outlook():
 
     def unreadIds(self):
         r, d = self.imap.search(None, "UNSEEN")
-        list = d[0].split(' ')
+        list = d[0].split(b' ')
         return list
 
     def hasUnread(self):
@@ -113,17 +113,17 @@ class Outlook():
 
     def readIdsToday(self):
         r, d = self.imap.search(None, '(SINCE "'+self.today+'")', 'SEEN')
-        list = d[0].split(' ')
+        list = d[0].split(b' ')
         return list
 
     def allIds(self):
         r, d = self.imap.search(None, "ALL")
-        list = d[0].split(' ')
+        list = d[0].split(b' ')
         return list
 
     def readIds(self):
         r, d = self.imap.search(None, "SEEN")
-        list = d[0].split(' ')
+        list = d[0].split(b' ')
         return list
 
     def getEmail(self, id):
