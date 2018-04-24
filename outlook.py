@@ -82,7 +82,8 @@ class Outlook():
         return self.imap.select("Inbox")
 
     def junk(self):
-        return self.imap.select("Junk")
+        # Get email from junk folder defined in config
+        return self.imap.select(config.junk_folder)
 
     def logout(self):
         return self.imap.logout()
